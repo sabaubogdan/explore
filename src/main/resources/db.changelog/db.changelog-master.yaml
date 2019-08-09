@@ -1,0 +1,187 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Bogdan
+    changes:
+    - createTable:
+        tableName: captain
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: first_name
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: last_name
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: military_rank
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: phone_number
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: address
+            type: varchar(250)
+            constraints:
+              nullable: false
+- changeSet:
+    id: 2
+    author: Bogdan
+    changes:
+    - createTable:
+        tableName: planet
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: planet_name
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: path_to_image
+            type: varchar(1000)
+        - column:
+            name: description
+            type: varchar(1000)
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(250)
+- changeSet:
+    id: 3
+    author: Bogdan
+    changes:
+    - createTable:
+        tableName: robot
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: name
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: model
+            type: varchar(100)
+            constraints:
+              nullable: false
+- changeSet:
+    id: 4
+    author: Bogdan
+    changes:
+    - createTable:
+        tableName: team
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: team_name
+            type: varchar(100)
+            constraints:
+              nullable: false
+- changeSet:
+    id: 5
+    author: Bogdan
+    changes:
+    - addColumn:
+        tableName: robot
+        columns:
+        - column:
+            name: team_id
+            type: bigint
+- changeSet:
+    id: 6
+    author: Bogdan
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: team_id
+        baseTableName: robot
+        constraintName: fk_robot_team
+        referencedColumnNames: id
+        referencedTableName: team
+- changeSet:
+      id: 7
+      author: Bogdan
+      changes:
+      - addColumn:
+            tableName: captain
+            columns:
+            - column:
+                  name: team_id
+                  type: bigint
+- changeSet:
+    id: 8
+    author: Bogdan
+    changes:
+    - createTable:
+        tableName: expedition
+        columns:
+        - column:
+            name: id
+            type: bigint
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: name
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: description
+            type: varchar(1000)
+            constraints:
+              nullable: false
+- changeSet:
+    id: 9
+    author: Bogdan
+    changes:
+    - addColumn:
+        tableName: team
+        columns:
+        - column:
+            name: expedition_id
+            type: bigint
+- changeSet:
+    id: 10
+    author: Bogdan
+    changes:
+    - addColumn:
+        tableName: expedition
+        columns:
+        - column:
+            name: planet_id
+            type: bigint
